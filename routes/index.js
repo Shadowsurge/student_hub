@@ -75,7 +75,7 @@ router.get('/adminpage', Middleware.isLoggedIn, Middleware.isAdmin, (request, re
 });
 
 // Create admin route
-router.post('/admin', Middleware.isLoggedIn, Middleware.isAdmin, (request, response) =>
+router.post('/admin', (request, response) =>
 {
   console.log('reached admin route')
   User.register(new User({
