@@ -33,7 +33,7 @@ let database =
     mlab: 'mongodb://admin:Studenthub1234@ds157500.mlab.com:57500/student_hub'
 }
 
-mongoose.connect(process.env.MONGODB_URI ? database.mlab : database.localHost);
+mongoose.connect(process.env.PORT ? database.mlab : database.localHost);
 const port = process.env.PORT || 3000;
 
 // Tell the app to use express session to manage cookies/user data etc
