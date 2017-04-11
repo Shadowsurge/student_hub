@@ -20,6 +20,11 @@
   text-align: center;
 }
 
+.modal-body #adContent
+{
+  word-wrap: break-word;
+}
+
 /*#advertTitle
 {
   text-align: center;

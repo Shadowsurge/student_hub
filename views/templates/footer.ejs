@@ -4,7 +4,7 @@
         var advertId = $(this).data('id');
         let advertTitle = $(this).data('title');
         let advertUsername = $(this).data('username');
-        var advertText = $(this).data('text');
+        let advertText = $(this).data('text').toString();
 
         $(".modal-header #advertUsername").html(`<em>Submitted by: ${advertUsername}</em>`);
         $(".modal-header #adTitle").text(advertTitle);
