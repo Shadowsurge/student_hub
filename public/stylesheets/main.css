@@ -1,0 +1,28 @@
+#homeHeader
+{
+  text-align: center;
+}
+
+#loginForm
+{
+  width: 30%;
+  margin: 0px auto;
+}
+
+#createBlogForm
+{
+  width: 30%;
+  margin: 0px auto;
+}
+
+#formHeader
+{
+  text-align: center;
+}
+
+/*#advertTitle
+{
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}*/

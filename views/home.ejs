@@ -1,0 +1,24 @@
+<% include templates/header.ejs %>
+
+<div class="container">
+  <div class="row">
+
+    <h1 id="homeHeader">StudentHub</h1>
+
+    <form id="loginForm" action="/login" method="POST">
+      <div class="form-group">
+        <input class="form-control" type="text" name="username" placeholder="Username...">
+      </div>
+
+      <div class="form-group">
+        <input class="form-control" type="password" name="password" placeholder="Password...">
+      </div>
+
+      <div class="form-group">
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+      </div>
+    </form>
+  </div>
+</div>
+
+<% include templates/footer.ejs %>
