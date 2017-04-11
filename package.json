@@ -4,11 +4,10 @@
   "description": "An admin web-app for StudentHub",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines":
-  {
+  "engines": {
     "node": "6.2.2"
   },
   "author": "Nathan Cassidy",
