@@ -6,7 +6,7 @@ mongoose.Promise = global.Promise;
 let database =
 {
     localHost: 'mongodb://localhost/student_hub',
-    mlab: 'mongodb://StudentHubAdmin:Studenthub1@ds157500.mlab.com:57500/student_hub'
+    mlab: 'mongodb://admin:Studenthub1234@ds157500.mlab.com:57500/student_hub'
 }
 
 mongoose.connect(process.env.PORT ? database.mlab : database.localHost);
