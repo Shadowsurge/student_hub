@@ -29,7 +29,7 @@ mongoose.Promise = global.Promise;
 
 let database =
 {
-    localHost: 'mongodb://localhost/student_hub',
+    localHost: 'mongodb://localhost:27017/student_hub',
     mlab: 'mongodb://admin:Studenthub1234@ds157500.mlab.com:57500/student_hub'
 }
 
