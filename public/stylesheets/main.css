@@ -31,3 +31,8 @@
   margin-bottom: 20px;
   margin-top: -10px;
 }
+
+.thumbnail > img
+{
+  width: 70%;
+}

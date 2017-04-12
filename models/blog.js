@@ -1,16 +1,12 @@
 let mongoose = require('mongoose'),
-    User = require('./models/user.js');
+    User = require('./user.js');
 
 let blogSchema = new mongoose.Schema({
   title: String,
-  author:
+  submittedBy:
   {
-    id:
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-    },
-    username: String
+    type: String,
+    default: "Anonymous"
   },
   content: String,
   approved:
