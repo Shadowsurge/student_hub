@@ -17,7 +17,7 @@
 
   <body>
 
-    <!-- Modal -->
+    <!-- Modal for creating a new admin -->
     <div class="modal fade" id="createAdminModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -25,6 +25,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h3 class="modal-title" id="adTitle">Please enter admin details</h3>
           </div>
+
           <div class="modal-body">
             <form id="newAdminForm" action="/admin" method="POST">
               <div class="form-group">
@@ -40,70 +41,66 @@
               </div>
             </form>
           </div>
-
-          <div class="modal-footer">
-            </form>
-          </div>
         </div>
       </div>
     </div>
     <!-- end create admin modal -->
 
-  <!-- navbar start -->
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
+    <!-- navbar start -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#hamburgerMenu" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
 
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#hamburgerMenu" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+          <% if(!user) { %>
+            <a class="navbar-brand" href="/">Image Here</a>
+            <% } else { %>
+            <a class="navbar-brand" href="/adminpage">Dashboard</a>
+            <% } %>
+        </div>
 
-        <% if(!user) { %>
-          <a class="navbar-brand" href="/">Image Here</a>
-          <% } else { %>
-          <a class="navbar-brand" href="/adminpage">Dashboard</a>
-          <% } %>
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <% if(user && user.isAdmin) { %>
-      <div class="collapse navbar-collapse" id="hamburgerMenu">
-        <ul class="nav navbar-nav navbar-right">
-          <!-- Button trigger modal -->
-          <li><a href="#" data-toggle="modal" data-target="#createAdminModal">Create Admin</a></li>
-          <li><a href="/blogs/new">Post Blog</a></li>
-          <li><a href="/adverts/new">Post Advert</a></li>
-          <li><a href="/logout">Logout</a></li>
-        </ul>
-      </div><!-- /.navbar-collapse --> <% } %>
-    </div><!-- /.container-fluid -->
-  </nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <% if(user && user.isAdmin) { %>
+        <div class="collapse navbar-collapse" id="hamburgerMenu">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <ul class="nav navbar-nav navbar-right nav-pills">
+                <li role="presentation" class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true">  <strong><%= user.username %></strong></span>
+                    <span class="caret"></span>
+                  </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#" data-toggle="modal" data-target="#createAdminModal">Create Admin</a></li>
+                      <li><a href="/blogs/new">Post Blog</a></li>
+                      <li><a href="/adverts/new">Post Advert</a></li>
+                      <li><a href="/logout">Logout</a></li>
+                    </ul>
+                  </li>
+                </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse --> <% } %>
+      </div><!-- /.container-fluid -->
+    </nav>
 
-  <!-- Message container -->
-  <div class="container">
-    <% if(errorMessage && errorMessage.length > 0) { %>
+    <!-- Message container -->
+    <div class="container">
+      <% if(errorMessage && errorMessage.length > 0) { %>
       <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <strong><%= errorMessage %></strong>
-        </div> <% } %>
+        <strong><%= errorMessage %></strong>
+      </div> <% } %>
 
-    <% if(successMessage && successMessage.length > 0) { %>
+      <% if(successMessage && successMessage.length > 0) { %>
       <div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <strong><%= successMessage %></strong>
-        </div> <% } %>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <% if(user && user.isAdmin) { %>
-        <div class="list-group">
-          <li class="list-group-item active">Item 1</li>
-          <li class="list-group-item">Item 2</li>
-          <li class="list-group-item">Item 3</li>
-        </div> <% } %>
-      </div>
+        <strong><%= successMessage %></strong>
+      </div> <% } %>
+    </div>

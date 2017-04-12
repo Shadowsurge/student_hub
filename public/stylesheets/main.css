@@ -25,9 +25,9 @@
   word-wrap: break-word;
 }
 
-/*#advertTitle
+.advertHeader
 {
   text-align: center;
-  padding: 0px;
-  margin: 0px;
-}*/
+  margin-bottom: 20px;
+  margin-top: -10px;
+}

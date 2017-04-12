@@ -33,6 +33,8 @@ router.get('/logout', (request, response) =>
 // Load adminpage with pending adverts
 router.get('/adminpage', Middleware.isLoggedIn, Middleware.isAdmin, (request, response) =>
 {
+  let collectedAdverts = {};
+
   Advert.find({school: "art", approved: false}).limit(4).then((artAdverts) =>
   {
     Advert.find({school: "dentistry", approved: false}).limit(4).then((dentistAdverts) =>
@@ -51,17 +53,53 @@ router.get('/adminpage', Middleware.isLoggedIn, Middleware.isAdmin, (request, re
                 {
                   Advert.find({school: "social_sciences", approved: false}).limit(4).then((socialAdverts) =>
                   {
-                    response.render('adminpage',
+                    collectedAdverts.artAdverts = artAdverts;
+                    collectedAdverts.dentistAdverts = dentistAdverts;
+                    collectedAdverts.educationAdverts = educationAdverts;
+                    collectedAdverts.humanitiesAdverts = humanitiesAdverts;
+                    collectedAdverts.lifeAdverts = lifeAdverts;
+                    collectedAdverts.medicineAdverts = medicineAdverts;
+                    collectedAdverts.nursingAdverts = nursingAdverts;
+                    collectedAdverts.scienceAdverts = scienceAdverts;
+                    collectedAdverts.socialAdverts = socialAdverts;
+
+                    Advert.find({school: "art", approved: false}).count().then((artCount) =>
                     {
-                      artAdverts,
-                      dentistAdverts,
-                      educationAdverts,
-                      humanitiesAdverts,
-                      lifeAdverts,
-                      medicineAdverts,
-                      nursingAdverts,
-                      scienceAdverts,
-                      socialAdverts
+                      Advert.find({school: "dentistry", approved: false}).count().then((dentistryCount) =>
+                      {
+                        Advert.find({school: "education", approved: false}).count().then((educationCount) =>
+                        {
+                          Advert.find({school: "humanities", approved: false}).count().then((humanitiesCount) =>
+                          {
+                            Advert.find({school: "life_sciences", approved: false}).count().then((lifeCount) =>
+                            {
+                              Advert.find({school: "medicine", approved: false}).count().then((medicineCount) =>
+                              {
+                                Advert.find({school: "nursing", approved: false}).count().then((nursingCount) =>
+                                {
+                                  Advert.find({school: "science", approved: false}).count().then((scienceCount) =>
+                                  {
+                                    Advert.find({school: "social_sciences", approved: false}).count().then((socialCount) =>
+                                    {
+                                      collectedAdverts.artCount = artCount;
+                                      collectedAdverts.dentistryCount = dentistryCount;
+                                      collectedAdverts.educationCount = educationCount;
+                                      collectedAdverts.humanitiesCount = humanitiesCount;
+                                      collectedAdverts.lifeCount = lifeCount;
+                                      collectedAdverts.medicineCount = medicineCount;
+                                      collectedAdverts.nursingCount = nursingCount;
+                                      collectedAdverts.scienceCount = scienceCount;
+                                      collectedAdverts.socialCount = socialCount;
+
+                                      response.render('adminpage', {collectedAdverts});
+                                    })
+                                  })
+                                })
+                              })
+                            })
+                          })
+                        })
+                      });
                     });
                   });
                 });
