@@ -44,6 +44,53 @@ router.post('/adverts', Middleware.isLoggedIn, (request, response) =>
   });
 });
 
+router.get('/adverts/:live', (request, response) =>
+{
+  let adverts = {};
+
+  switch(request.params.live)
+  {
+    case "art":
+      Advert.find({school: "art", approved: true}).then((adverts) =>
+      {
+        return response.render("adverts/live", {adverts});
+      });
+      break;
+
+    case "dentistry":
+      response.send("Dentistry adverts");
+      break;
+
+    case "education":
+      response.send("Educaation");
+      break;
+
+    case "humanities":
+      response.send("Humanities");
+      break;
+
+    case "life_sciences":
+      response.send("Life Sciences");
+      break;
+
+    case "medicine":
+      response.send("medicine");
+      break;
+
+    case "nursing":
+      response.send("nursing");
+      break;
+
+    case "science":
+      response.send("Science");
+      break;
+
+    case "social_sciences":
+      response.send("social sciences");
+      break;
+  }
+});
+
 router.put('/adverts/:id/approve', Middleware.isLoggedIn, Middleware.isAdmin, (request, response) =>
 {
   Advert.findByIdAndUpdate(request.params.id,
