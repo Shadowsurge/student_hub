@@ -15,7 +15,7 @@ router.post('/adverts', Middleware.isLoggedIn, (request, response) =>
   if(!request.body.title || !request.body.content)
   {
     request.flash("error", "All fields are required!");
-    return response.redirect('/adminpage');
+    return response.redirect('back');
   }
 
   let advert = new Advert({
@@ -44,7 +44,7 @@ router.post('/adverts', Middleware.isLoggedIn, (request, response) =>
   });
 });
 
-router.get('/adverts/:live', (request, response) =>
+router.get('/adverts/:live', Middleware.isLoggedIn, Middleware.isAdmin, (request, response) =>
 {
   let adverts = {};
 
@@ -58,39 +58,64 @@ router.get('/adverts/:live', (request, response) =>
       break;
 
     case "dentistry":
-      response.send("Dentistry adverts");
+      Advert.find({school: "dentistry", approved: true}).then((adverts) =>
+      {
+        return response.render("adverts/live", {adverts});
+      });
       break;
 
     case "education":
-      response.send("Educaation");
+      Advert.find({school: "education", approved: true}).then((adverts) =>
+      {
+        return response.render("adverts/live", {adverts});
+      });
       break;
 
     case "humanities":
-      response.send("Humanities");
+      Advert.find({school: "humanities", approved: true}).then((adverts) =>
+      {
+        return response.render("adverts/live", {adverts});
+      });
       break;
 
     case "life_sciences":
-      response.send("Life Sciences");
+      Advert.find({school: "life_sciences", approved: true}).then((adverts) =>
+      {
+        return response.render("adverts/live", {adverts});
+      });
       break;
 
     case "medicine":
-      response.send("medicine");
+      Advert.find({school: "medicine", approved: true}).then((adverts) =>
+      {
+        return response.render("adverts/live", {adverts});
+      });
       break;
 
     case "nursing":
-      response.send("nursing");
+      Advert.find({school: "nursing", approved: true}).then((adverts) =>
+      {
+        return response.render("adverts/live", {adverts});
+      });
       break;
 
     case "science":
-      response.send("Science");
+      Advert.find({school: "science", approved: true}).then((adverts) =>
+      {
+        return response.render("adverts/live", {adverts});
+      });
       break;
 
     case "social_sciences":
-      response.send("social sciences");
+      Advert.find({school: "social_sciences", approved: true}).then((adverts) =>
+      {
+        return response.render("adverts/live", {adverts});
+      });
       break;
   }
 });
 
+// TODO add in an undo??
 router.put('/adverts/:id/approve', Middleware.isLoggedIn, Middleware.isAdmin, (request, response) =>
 {
   Advert.findByIdAndUpdate(request.params.id,
@@ -110,23 +135,25 @@ router.put('/adverts/:id/approve', Middleware.isLoggedIn, Middleware.isAdmin, (r
   }).then((updatedDocument) =>
   {
     request.flash("success", `${updatedDocument.title}, by ${updatedDocument.author.username}, has been approved successfully.`);
-    response.redirect(`/adminpage`);
+    response.redirect(`back`);
   }).catch((error) =>
   {
-    console.log(error);
+    request.flash("error", "Something went wrong, check your connection/refresh and try again!");
+    response.redirect('back');
   })
 });
 
+// TODO add in an undo??
 router.delete('/adverts/:id/delete', Middleware.isLoggedIn, Middleware.isAdmin, (request, response) =>
 {
   // reference this - http://stackoverflow.com/questions/39424531/mongoose-mongodb-remove-an-element-on-an-array
   Advert.findById(request.params.id).then(function(advert)
   {
     return advert.remove();
-  }).then(function()
+  }).then(function(advert)
   {
-    console.log('Removed advert');
-    return response.redirect('/adminpage');
+    request.flash("success", `${advert.title} - has been deleted.`);
+    return response.redirect('back');
   }).catch(function(error)
   {
     console.log(error);

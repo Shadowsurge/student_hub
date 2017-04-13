@@ -1,27 +1,32 @@
 <% include ../templates/header.ejs %>
 
 <div class="container">
-  <% adverts.forEach((advert) => { %>
-    <div class="well">
-      <div class="card w-75">
-        <div class="text-right">
-          <form id="card-delete-button" action="" method="POST">
-            <button type="submit" class="btn btn-danger" aria-label="Left Align">
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            </button>
-          </form>
+  <% if(adverts.length === 0) { %>
+    <h1>No adverts available</h1>
+    <% } else {
+      adverts.forEach((advert) => { %>
+        <div class="well">
+          <div class="card w-75">
+            <div class="text-right">
+              <form id="card-delete-button" action="/adverts/<%= advert._id %>/delete?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger" aria-label="Left Align">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+              </form>
+            </div>
+
+
+            <div class="card-block">
+              <h3 class="card-title" id="live-title"><%= advert.title %></h3>
+              <h6><em>Posted by: <%= advert.author.username %> - <%=advert.createdAt.getDate() + "/"  + (advert.createdAt.getMonth()+1) + "/" + advert.createdAt.getFullYear() + " - " + advert.createdAt.getHours() + ":" + advert.createdAt.getMinutes()%></em></h6>
+              <h6>Approved by: <%= advert.approvedBy.username %></h6>
+              <p class="card-text"><%= advert.content %></p>
+            </div>
+          </div>
         </div>
 
-
-        <div class="card-block">
-          <h3 class="card-title live-card"><%= advert.title %></h3>
-          <p class="card-text"><%= advert.content %></p>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-    <% }); %>
+        <hr>
+        <% }); } %>
 </div>
 
 <% include ../templates/footer.ejs %>

@@ -91,7 +91,7 @@ router.get('/adminpage', Middleware.isLoggedIn, Middleware.isAdmin, (request, re
                                       collectedAdverts.scienceCount = scienceCount;
                                       collectedAdverts.socialCount = socialCount;
 
-                                      response.render('adminpage', {collectedAdverts});
+                                      response.status(200).render('adminpage', {collectedAdverts});
                                     })
                                   })
                                 })

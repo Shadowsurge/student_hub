@@ -55,6 +55,7 @@ app.use((request, response, next) =>
   response.locals.user = request.user;
   response.locals.errorMessage = request.flash("error");
   response.locals.successMessage = request.flash("success");
+  response.locals.infoMessage = request.flash("info");
   next();
 });
 
