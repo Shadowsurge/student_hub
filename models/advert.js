@@ -27,7 +27,8 @@ let advertSchema = new mongoose.Schema({
       ref: "User"
     },
     username: String
-  }
+  },
+  createdAt: Date
 });
 
 advertSchema.pre('remove', function(next)

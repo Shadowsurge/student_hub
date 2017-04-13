@@ -26,7 +26,8 @@ router.post('/adverts', Middleware.isLoggedIn, (request, response) =>
       username: request.user.username
     },
     content: request.body.content,
-    school: request.body.category
+    school: request.body.category,
+    createdAt: new Date()
   });
 
   advert.save().then((result) =>
