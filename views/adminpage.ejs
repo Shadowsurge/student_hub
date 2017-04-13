@@ -16,7 +16,7 @@
                     <div class="card-block">
                       <h4 class="card-title"><%= advert.title %></h4>
                       <p class="card-text">Posted: <%=advert.createdAt.getDate() + "/"  + (advert.createdAt.getMonth()+1) + "/" + advert.createdAt.getFullYear() + " - " + advert.createdAt.getHours() + ":" + advert.createdAt.getMinutes()%></p>
-                      <button type="button" class="btn btn-primary btn-block openAdvertModal" data-id="<%=advert._id%>" data-text="<%=advert.content%>"
+                      <button type="button" href="#" class="btn btn-primary btn-block openAdvertModal" data-id="<%=advert._id%>" data-text="<%=advert.content%>"
                         data-title="<%=advert.title%>" data-username="<%=advert.author.username%>" data-toggle="modal" data-target="#manageAdvertModal">
                         Manage Advert
                       </button>
