@@ -25,6 +25,11 @@
   word-wrap: break-word;
 }
 
+.card-text
+{
+  word-wrap: break-word;
+}
+
 .advertHeader
 {
   text-align: center;
