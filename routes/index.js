@@ -17,8 +17,14 @@ router.get('/', (request, response) =>
 
 router.get('/apptest', (request, response) =>
 {
+  let user =
+  {
+    name: "test",
+    email: "test",
+    message: "hello"
+  }
   response.writeHead(200, {'Content-Type': 'application/json'});
-  response.json({message: "hello"});
+  response.write(JSON.stringify(user));
 })
 
 // Login route
