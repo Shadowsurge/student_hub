@@ -15,6 +15,11 @@ router.get('/', (request, response) =>
   response.render('home');
 });
 
+router.get('/apptest', (request, response) =>
+{
+  response.send("Hello");
+})
+
 // Login route
 router.post('/login', passport.authenticate("local",
 {
@@ -31,7 +36,7 @@ router.get('/logout', (request, response) =>
 });
 
 // Load adminpage with pending adverts
-router.get('/adminpage', (request, response) =>
+router.get('/adminpage', Middleware.isLoggedIn, Middleware.isAdmin, (request, response) =>
 {
   let collectedAdverts = {};
 
