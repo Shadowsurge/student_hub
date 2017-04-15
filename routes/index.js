@@ -73,7 +73,7 @@ router.get('/apptest', (request, response) =>
                                       collectedAdverts.scienceCount = scienceCount;
                                       collectedAdverts.socialCount = socialCount;
 
-                                      response.status(200).send({collectedAdverts});
+                                      response.status(200).json({collectedAdverts});
                                     })
                                   })
                                 })
