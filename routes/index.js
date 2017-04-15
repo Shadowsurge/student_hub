@@ -24,7 +24,8 @@ router.get('/apptest', (request, response) =>
     message: "hello"
   }
   // response.writeHead(200, {'Content-Type': 'application/json'});
-  response.write(JSON.stringify(user));
+  // response.write(JSON.stringify(user));
+  response.send(JSON.stringify(user));
 })
 
 // Login route
