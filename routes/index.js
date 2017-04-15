@@ -31,7 +31,7 @@ router.get('/logout', (request, response) =>
 });
 
 // Load adminpage with pending adverts
-router.get('/adminpage', Middleware.isLoggedIn, Middleware.isAdmin, (request, response) =>
+router.get('/adminpage', (request, response) =>
 {
   let collectedAdverts = {};
 
