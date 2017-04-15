@@ -15,11 +15,6 @@ router.get('/', (request, response) =>
   response.render('home');
 });
 
-router.get('/apptest', (request, response) =>
-{
-  response.status(200).json({hello : "hello"});
-})
-
 // Login route
 router.post('/login', passport.authenticate("local",
 {
