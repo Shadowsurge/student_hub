@@ -17,7 +17,9 @@ router.get('/', (request, response) =>
 
 router.get('/apptest', (request, response) =>
 {
-  response.send("Hello");
+  response.send({
+    message: "hello"
+  });
 })
 
 // Login route
