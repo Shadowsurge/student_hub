@@ -1,5 +1,6 @@
 let express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    Advert = require('../models/advert.js');
 
 router.get('/android/art', (request, response) =>
 {
