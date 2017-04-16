@@ -12,7 +12,7 @@ router.get('/android/:id', (request, response) =>
   });
 });
 
-router.post('/register', (request, response) =>
+router.post('/android/register', (request, response) =>
 {
   User.register(new User({
     username: request.body.username
