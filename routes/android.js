@@ -2,21 +2,11 @@ let express = require('express'),
     router = express.Router(),
     Advert = require('../models/advert.js');
 
-router.get('/android/art', (request, response) =>
+router.get('/android/:id', (request, response) =>
 {
   let adverts = {}
 
-  Advert.find({school: "art", approved: true}).then((adverts) =>
-  {
-    response.status(200).json({adverts});
-  });
-});
-
-router.get('/android/dentistry', (request, response) =>
-{
-  let adverts = {}
-
-  Advert.find({school: "dentistry", approved: true}).then((adverts) =>
+  Advert.find({school: request.params.id, approved: true}).then((adverts) =>
   {
     response.status(200).json({adverts});
   });
