@@ -23,10 +23,10 @@ router.post('/android/register', (request, response) =>
       return response.status(400).json({message: `This went wrong: ${error}`});
     }
 
-    passport.authenticate("local")(request, response,  () =>
-    {
-      response.status(200).json({message: `Thanks for signing up, ${user.username}`});
-    });
+    // passport.authenticate("local")(request, response,  () =>
+    // {
+    //   response.status(200).json({message: `Thanks for signing up, ${user.username}`});
+    // });
   });
 });
 
