@@ -12,4 +12,14 @@ router.get('/android/art', (request, response) =>
   });
 });
 
+router.get('/android/dentistry', (request, response) =>
+{
+  let adverts = {}
+
+  Advert.find({school: "dentistry", approved: true}).then((adverts) =>
+  {
+    response.status(200).json({adverts});
+  });
+});
+
 module.exports = router;
