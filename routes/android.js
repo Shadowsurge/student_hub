@@ -1,6 +1,7 @@
 let express = require('express'),
     router = express.Router(),
-    Advert = require('../models/advert.js');
+    Advert = require('../models/advert.js'),
+    User = require('../models/user.js');
 
 router.get('/android/:id', (request, response) =>
 {
