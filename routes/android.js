@@ -12,4 +12,22 @@ router.get('/android/:id', (request, response) =>
   });
 });
 
+router.post('/register', (request, response) =>
+{
+  User.register(new User({
+    username: request.body.username
+  }), request.body.password, (error, user) =>
+  {
+    if(error)
+    {
+      return response.status(400).json({message: `This went wrong: ${error}`});
+    }
+
+    passport.authenticate("local")(request, response,  () =>
+    {
+      response.status(200).json({message: `Thanks for signing up, ${user.username}`});
+    });
+  });
+});
+
 module.exports = router;
