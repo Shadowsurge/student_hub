@@ -4,6 +4,13 @@ let express = require('express'),
     Advert = require('../models/advert.js'),
     User = require('../models/user.js');
 
+// Login route
+router.post('/android/login', passport.authenticate("local",
+{
+  successRedirect:  '/android/loginsuccess',
+  failureRedirect: '/android/loginfailed'
+}));
+
 router.get('/android/loginsuccess', (request, response) =>
 {
   response.send("Logged in");
@@ -41,13 +48,6 @@ router.post('/android/register', (request, response) =>
     // });
   });
 });
-
-// Login route
-router.post('/android/login', passport.authenticate("local",
-{
-  successRedirect:  '/loginsuccess',
-  failureRedirect: '/loginfailed'
-}));
 
 
 module.exports = router;
