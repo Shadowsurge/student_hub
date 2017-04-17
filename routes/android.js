@@ -1,5 +1,6 @@
 let express = require('express'),
     router = express.Router(),
+    passport = require('passport'),
     Advert = require('../models/advert.js'),
     User = require('../models/user.js');
 
