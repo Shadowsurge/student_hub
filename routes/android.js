@@ -14,7 +14,10 @@ router.post('/android/login', passport.authenticate("local",
 
 router.get('/android/loginsuccess', (request, response) =>
 {
-  response.send("Logged in");
+  User.findById(request.user._id).then((loggedUser) =>
+  {
+    return response.send("Logged in", loggedUser);
+  });
 });
 
 router.get('/android/loginfailed', (request, response) =>
