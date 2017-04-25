@@ -14,18 +14,27 @@ router.post('/android/login', passport.authenticate("local",
 
 router.get('/android/loginsuccess', (request, response) =>
 {
-  // response.send("Logged in");
-  User.find({username: request.user.username}).then((loggedUser) =>
-  {
-    response.send(JSON.stringify({loggedUser}));
-    // let res = JSON.stringify({'success':'logged in', loggedUser});
-    // return response.send(res);
-  });
+  response.send("Logged in");
 });
 
 router.get('/android/loginfailed', (request, response) =>
 {
   response.send("Login failed");
+});
+
+router.get('/android/user/details', (request, response) =>
+{
+  User.findById(request.user._id).then((loggedUser) =>
+  {
+    if(!loggedUser)
+    {
+      return response.send("Could not find user");
+    }
+    response.send(JSON.stringify({loggedUser}));
+
+    // let res = JSON.stringify({'success':'logged in', loggedUser});
+    // return response.send(res);
+  });
 });
 
 router.get('/android/:id', (request, response) =>
