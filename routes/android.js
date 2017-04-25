@@ -15,9 +15,9 @@ router.post('/android/login', passport.authenticate("local",
 router.get('/android/loginsuccess', (request, response) =>
 {
   // response.send("Logged in");
-  User.findById(request.user._id).then((loggedUser) =>
+  User.find(_id: request.user._id).then((loggedUser) =>
   {
-    response.json(JSON.stringify(loggedUser));
+    response.send(JSON.stringify(loggedUser));
     // let res = JSON.stringify({'success':'logged in', loggedUser});
     // return response.send(res);
   });
