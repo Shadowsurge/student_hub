@@ -5,23 +5,23 @@ let express = require('express'),
     User = require('../models/user.js');
 
 // Login route
-router.post('/android/login', passport.authenticate("local",
+router.post('/application/login', passport.authenticate("local",
 {
-  successRedirect:  '/android/loginsuccess',
-  failureRedirect: '/android/loginfailed'
+  successRedirect:  '/application/loginsuccess',
+  failureRedirect: '/application/loginfailed'
 }));
 
-router.get('/android/loginsuccess', (request, response) =>
+router.get('/application/loginsuccess', (request, response) =>
 {
   response.send("Logged in");
 });
 
-router.get('/android/loginfailed', (request, response) =>
+router.get('/application/loginfailed', (request, response) =>
 {
   response.send("Login failed");
 });
 
-router.get('/android/:id', (request, response) =>
+router.get('/application/:id', (request, response) =>
 {
   let adverts = {}
 
@@ -31,7 +31,7 @@ router.get('/android/:id', (request, response) =>
   });
 });
 
-router.post('/android/register', (request, response) =>
+router.post('/application/register', (request, response) =>
 {
   User.register(new User({
     username: request.body.username
@@ -46,6 +46,38 @@ router.post('/android/register', (request, response) =>
     // {
     //   response.status(200).json({message: `Thanks for signing up, ${user.username}`});
     // });
+  });
+});
+
+router.post('/application/advert', Middleware.isLoggedIn, (request, response) =>
+{
+  if(!request.body.title || !request.body.content)
+  {
+    return response.send("Missing Data");
+  }
+
+  let advert = new Advert({
+    title: request.body.title,
+    author:
+    {
+      id: request.user._id,
+      username: request.user.username
+    },
+    content: request.body.content,
+    school: request.body.category,
+    createdAt: new Date()
+  });
+
+  advert.save().then((result) =>
+  {
+    User.findById(request.user._id).then((foundUser) =>
+    {
+      foundUser.adverts.push(advert);
+      foundUser.save().then((saveResult) =>
+      {
+          response.send("Advert created successfully!");
+      });
+    });
   });
 });
 
