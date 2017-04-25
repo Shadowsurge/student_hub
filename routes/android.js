@@ -2,7 +2,8 @@ let express = require('express'),
     router = express.Router(),
     passport = require('passport'),
     Advert = require('../models/advert.js'),
-    User = require('../models/user.js');
+    User = require('../models/user.js'),
+    Middleware = require('../middleware/middleware.js');
 
 // Login route
 router.post('/android/login', passport.authenticate("local",
@@ -49,37 +50,37 @@ router.post('/android/register', (request, response) =>
   });
 });
 
-// router.post('/android/advert', Middleware.isLoggedIn, (request, response) =>
-// {
-//   if(!request.body.title || !request.body.content)
-//   {
-//     return response.send("Missing Data");
-//   }
-//
-//   let advert = new Advert({
-//     title: request.body.title,
-//     author:
-//     {
-//       id: request.user._id,
-//       username: request.user.username
-//     },
-//     content: request.body.content,
-//     school: request.body.category,
-//     createdAt: new Date()
-//   });
-//
-//   advert.save().then((result) =>
-//   {
-//     User.findById(request.user._id).then((foundUser) =>
-//     {
-//       foundUser.adverts.push(advert);
-//       foundUser.save().then((saveResult) =>
-//       {
-//           response.send("Advert created successfully!");
-//       });
-//     });
-//   });
-// });
+router.post('/android/advert', Middleware.isLoggedIn, (request, response) =>
+{
+  if(!request.body.title || !request.body.content)
+  {
+    return response.send("Missing Data");
+  }
+
+  let advert = new Advert({
+    title: request.body.title,
+    author:
+    {
+      id: request.user._id,
+      username: request.user.username
+    },
+    content: request.body.content,
+    school: request.body.category,
+    createdAt: new Date()
+  });
+
+  advert.save().then((result) =>
+  {
+    User.findById(request.user._id).then((foundUser) =>
+    {
+      foundUser.adverts.push(advert);
+      foundUser.save().then((saveResult) =>
+      {
+          response.send("Advert created successfully!");
+      });
+    });
+  });
+});
 
 
 module.exports = router;
