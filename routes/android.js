@@ -5,23 +5,23 @@ let express = require('express'),
     User = require('../models/user.js');
 
 // Login route
-router.post('/application/login', passport.authenticate("local",
+router.post('/android/login', passport.authenticate("local",
 {
-  successRedirect:  '/application/loginsuccess',
-  failureRedirect: '/application/loginfailed'
+  successRedirect:  '/android/loginsuccess',
+  failureRedirect: '/android/loginfailed'
 }));
 
-router.get('/application/loginsuccess', (request, response) =>
+router.get('/android/loginsuccess', (request, response) =>
 {
   response.send("Logged in");
 });
 
-router.get('/application/loginfailed', (request, response) =>
+router.get('/android/loginfailed', (request, response) =>
 {
   response.send("Login failed");
 });
 
-router.get('/application/:id', (request, response) =>
+router.get('/android/:id', (request, response) =>
 {
   let adverts = {}
 
@@ -31,7 +31,7 @@ router.get('/application/:id', (request, response) =>
   });
 });
 
-router.post('/application/register', (request, response) =>
+router.post('/android/register', (request, response) =>
 {
   User.register(new User({
     username: request.body.username
@@ -49,7 +49,7 @@ router.post('/application/register', (request, response) =>
   });
 });
 
-router.post('/application/advert', Middleware.isLoggedIn, (request, response) =>
+router.post('/android/advert', Middleware.isLoggedIn, (request, response) =>
 {
   if(!request.body.title || !request.body.content)
   {
