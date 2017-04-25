@@ -18,7 +18,7 @@ let User = require('./models/user.js'),
     IndexRoutes = require('./routes/index.js'),
     AdvertRoutes = require('./routes/adverts.js'),
     BlogRoutes = require('./routes/blogs.js'),
-    AndroidRoutes = require('./routes/android.js');
+    ApplicationRoutes = require('./routes/application.js');
 
 // ************************************************
 //              APP USAGE STATEMENTS
@@ -69,7 +69,7 @@ app.use(bodyParser.urlencoded({
 app.use(IndexRoutes);
 app.use(AdvertRoutes);
 app.use(BlogRoutes);
-app.use(AndroidRoutes);
+app.use(ApplicationRoutes);
 
 app.listen(port, () =>
 {
