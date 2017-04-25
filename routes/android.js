@@ -16,7 +16,7 @@ router.get('/android/loginsuccess', (request, response) =>
 {
   User.findById(request.user._id).then((loggedUser) =>
   {
-    response.status(200).json({"success": "logged in", loggedUser});
+    response.status(200).send(JSON.stringify({"success":"logged in", loggedUser}));
   });
 });
 
