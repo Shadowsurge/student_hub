@@ -12,14 +12,14 @@ router.post('/android/login', passport.authenticate("local",
   failureRedirect: '/android/loginfailed'
 }));
 
-router.get('/android/loginsuccess', (request, response) =>
-{
-  response.send("Logged in");
-});
-
 router.get('/android/loginfailed', (request, response) =>
 {
   response.send("Login failed");
+});
+
+router.get('/android/loginsuccess', (request, response) =>
+{
+  response.send("Logged in");
 });
 
 router.get('/android/user/details', (request, response) =>
