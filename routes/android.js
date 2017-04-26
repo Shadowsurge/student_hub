@@ -65,7 +65,7 @@ router.post('/android/register', (request, response) =>
   });
 });
 
-router.post('/android/advert', Middleware.isLoggedIn, (request, response) =>
+router.post('/android/advert', (request, response) =>
 {
   if(!request.body.title || !request.body.content || request.body.email)
   {
