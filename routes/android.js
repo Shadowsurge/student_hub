@@ -67,7 +67,7 @@ router.post('/android/register', (request, response) =>
 
 router.post('/android/advert', Middleware.isLoggedIn, (request, response) =>
 {
-  if(!request.body.title || !request.body.content)
+  if(!request.body.title || !request.body.content || request.body.email)
   {
     return response.send("Missing Data");
   }
@@ -80,7 +80,7 @@ router.post('/android/advert', Middleware.isLoggedIn, (request, response) =>
       username: request.user.username
     },
     content: request.body.content,
-    school: request.body.category,
+    school: "art",
     createdAt: new Date()
   });
 
@@ -91,7 +91,7 @@ router.post('/android/advert', Middleware.isLoggedIn, (request, response) =>
       foundUser.adverts.push(advert);
       foundUser.save().then((saveResult) =>
       {
-          response.send("Advert created successfully!");
+          return response.send("Success");
       });
     });
   });
