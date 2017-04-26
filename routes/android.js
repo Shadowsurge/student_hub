@@ -67,26 +67,26 @@ router.post('/android/register', (request, response) =>
 
 router.post('/android/advert', (request, response) =>
 {
-  if(!request.body.title || !request.body.content || !request.body.email)
+  if(!request.params.title || !request.params.content || !request.params.email)
   {
     return response.send("Missing Data");
   }
 
   let advert = new Advert({
-    title: request.body.title,
+    title: request.params.title,
     author:
     {
-      id: request.user._id,
-      username: request.user.username
+      id: request.params._id,
+      username: request.params.username
     },
-    content: request.body.content,
+    content: request.params.content,
     school: "art",
     createdAt: new Date()
   });
 
   advert.save().then((result) =>
   {
-    User.findById(request.user._id).then((foundUser) =>
+    User.findById(request.params._id).then((foundUser) =>
     {
       foundUser.adverts.push(advert);
       foundUser.save().then((saveResult) =>
