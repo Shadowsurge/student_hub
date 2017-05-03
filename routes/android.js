@@ -80,7 +80,7 @@ router.post('/android/advert', (request, response) =>
       username: request.body.username
     },
     content: request.body.content,
-    school: "art",
+    school: request.body.category,
     createdAt: new Date()
   });
 
