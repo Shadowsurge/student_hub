@@ -78,11 +78,7 @@ router.post('/android/advert', (request, response) =>
     {
       id: request.body._id,
       username: request.body.username,
-      email: request.body.email,
-      if(request.body.phone)
-      {
-        phone: request.body.phone
-      }
+      email: request.body.email
     },
     content: request.body.content,
     school: request.body.category,
