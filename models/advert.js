@@ -10,7 +10,13 @@ let advertSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "User"
     },
-    username: String
+    username: String,
+    email: String,
+    phone:
+    {
+      type: String,
+      default: "No phone number supplied"
+    }
   },
   content: String,
   school: String,
