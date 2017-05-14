@@ -37,6 +37,16 @@ router.get('/android/user/:username', (request, response) =>
   });
 });
 
+router.get('/android/blog/', (request, response) =>
+{
+  let blogs = {}
+
+  Blog.find({}).then((blogs) =>
+  {
+    response.status(200).json({blogs});
+  });
+});
+
 router.get('/android/:id', (request, response) =>
 {
   let adverts = {}
@@ -98,18 +108,5 @@ router.post('/android/advert', (request, response) =>
     });
   });
 });
-
-router.get('/android/blog/', (request, response) =>
-{
-  let blogs = {}
-
-  Blog.find({}).then((blogs) =>
-  {
-    response.status(200).json({blogs});
-  });
-});
-
-
-
 
 module.exports = router;
