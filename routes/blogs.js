@@ -22,7 +22,13 @@ router.post('/blogs', Middleware.isLoggedIn, (request, response) =>
   let blog = new Blog({
     title: request.body.title,
     submittedBy: request.body.author,
-    content: request.body.content
+    content: request.body.content,
+    approved: true,
+    approvedBy:
+    {
+      id: request.user._id,
+      username: request.user.username
+    }
   });
 
   blog.save().then((result) =>
