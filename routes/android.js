@@ -41,7 +41,7 @@ router.get('/android/blog/', (request, response) =>
 {
   let blogs = {}
 
-  Blog.find({}).then((blogs) =>
+  Blog.find().then((blogs) =>
   {
     response.status(200).json({blogs});
   });
