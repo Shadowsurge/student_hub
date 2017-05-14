@@ -37,7 +37,7 @@ router.get('/android/user/:username', (request, response) =>
   });
 });
 
-router.get('/android/blog/', (request, response) =>
+router.get('/android/blog', (request, response) =>
 {
   let blogs = {}
 
