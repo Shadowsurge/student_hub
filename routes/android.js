@@ -3,6 +3,7 @@ let express = require('express'),
     passport = require('passport'),
     Advert = require('../models/advert.js'),
     User = require('../models/user.js'),
+    Blog = require('../models/blog.js'),
     Middleware = require('../middleware/middleware.js');
 
 // Login route
