@@ -62,6 +62,7 @@ router.post('/android/register', (request, response) =>
 {
   User.register(new User({
     username: request.body.username
+    email: request.body.email
   }), request.body.password, (error, user) =>
   {
     if(error)
